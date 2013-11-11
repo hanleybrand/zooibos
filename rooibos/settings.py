@@ -75,9 +75,8 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.transaction.TransactionMiddleware',
     'rooibos.storage.middleware.StorageOnStart',
     'rooibos.access.middleware.AccessOnStart',
-    'rooibos.data.middleware.DataOnStart',
     'rooibos.middleware.HistoryMiddleware',
-    'rooibos.access.middleware.AnonymousIpGroupMembershipMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 )
 
 ROOT_URLCONF = 'rooibos.urls'
@@ -124,6 +123,7 @@ INSTALLED_APPS = (
     'impersonate',
     'compressor',
     'south',
+    'debug_toolbar',
 )
 
 STORAGE_SYSTEMS = {

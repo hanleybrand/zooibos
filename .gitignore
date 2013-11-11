@@ -21,3 +21,7 @@ bin-release-temp/
 .DS_Store
 .idea
 .idea/*
+log
+log/*
+venv
+venv/*
