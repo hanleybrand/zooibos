@@ -1,0 +1,62 @@
+<config>
+	<content>
+		<resourcepath>\\bruegel\d$\mdid2\images\</resourcepath>
+		<imageexpiration>60</imageexpiration>
+		<downloads>\\bruegel\d$\mdid2\downloads\</downloads>
+		<templates>\\bruegel\d$\mdid2\templates\</templates>
+		<resourceprefix>_img_</resourceprefix>
+		<remotecollections>
+			<!-- update cache for all remote collections every 60 minutes -->
+			<updatecache>60</updatecache>
+		</remotecollections>
+	</content>
+	<authentication>
+		<method.example>Orciid.Core.Pop3UserAuthentication</method.example>
+		<autocreateuser>true</autocreateuser>
+		<ldap>
+			<server>ldap.yourinstitution.edu</server>
+			<querypath>cn={0},ou=People,o=yourinstitution</querypath>
+			<fields>
+				<email>mail</email>
+				<firstname>givenName</firstname>
+				<lastname>sn</lastname>
+				<additional>eduPersonPrimaryAffiliation</additional>
+			</fields>
+		</ldap>
+		<imap>
+			<server>imap.yourinstitution.edu</server>
+			<port>143</port>
+			<emaildomain>yourinstitution.edu</emaildomain>
+		</imap>
+		<pop3>
+			<server>pop3.yourinstitution.edu</server>
+			<port>110</port>
+			<emaildomain>yourinstitution.edu</emaildomain>
+		</pop3>
+	</authentication>
+	<database>
+		<servertype>MSSQL</servertype>
+		<connection>server=bruegel.davidson.edu; User ID=admin; Password=towerofbabel; database=mdid2;</connection>
+		<trace>on</trace>
+		<cmdtimeout>300</cmdtimeout>
+		<upgradeable>false</upgradeable>
+	</database>
+	<ui>
+		<maxsearchresults>1000</maxsearchresults>
+		<notecards>
+			<pack>false</pack>
+		</notecards>
+		<requiressl>false</requiressl>
+	</ui>
+	<smtp>
+		<server>frogmanhenry.davidson.edu</server>
+		<sender>mdid@jmu.edu</sender>
+	</smtp>
+	<imageviewer>
+		<!--
+			Set to true only if you have installed on your MDID2 server an SSL certificate 
+			issued by a known and valid certificate authority.
+		--> 
+		<securelogin>false</securelogin>
+	</imageviewer>
+</config>
