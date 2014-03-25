@@ -14,7 +14,7 @@
         if (ids.constructor != Array) ids = [ids];
         ajaxManager.add({
             type: method,
-            url: '{% url flickr-select %}',
+            url: '{% url shared-select shared.id, shared.name %}',
             data: {'id': JSON.stringify(ids), 'checked': checked},
             dataType: 'json',
             success: function(r) {
@@ -60,7 +60,7 @@
 
 {{ block.super }}
 
-<h1>Flickr</h1>
+<h1>{{ shared.title }} Results</h1>
 {% endblock %}
 
 
@@ -68,8 +68,6 @@
 <form method="POST" action=".">{% csrf_token %}
 <input type="hidden" name="q" value="{{ query }}" />
 <div>
-    Your query found {{ results.hits|intcomma }} image{{ results.hits|pluralize }} licensed under
-    a Creative Commons license.
     <input id="submit_record_selections" type="submit" name="action" value="Select" />
 </div>
 
@@ -89,9 +87,9 @@
 {% for r in results.records %}
 
 <div class="record">
-    <a href="{{ r.record_url }}" target="flickr_page"><img class="thumbnail" src="{{ r.thumb_url }}" alt="{{ r.title }}" /></a>
-    <div class="record-title"><a href="{{ r.record_url }}" target="flickr_page">{{ r.title }}</a></div>
-    <input type="checkbox" class="remote-record-select" name="r" value="{{ r.flickr_id }}"{% if r.selected %} checked="checked"{% endif %} />
+    <img class="thumbnail" src="{{ r.thumbnail }}" alt="{{ r.title }}" />
+    <div class="record-title">{{ r.title }}</div>
+    <input type="checkbox" class="remote-record-select" name="r" value="{{ r.id }}"{% if r.selected %} checked="checked"{% endif %} />
 </div>
 
 {% endfor %}
