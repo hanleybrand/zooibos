@@ -24,7 +24,7 @@ from reportlab.platypus import flowables
 from reportlab.platypus.paragraph import Paragraph
 from reportlab.platypus.frames import Frame
 from reportlab.platypus.doctemplate import BaseDocTemplate, PageTemplate
-import Image
+from PIL import Image
 import re
 import math
 import zipfile
@@ -328,7 +328,7 @@ class PackageFilesViewer(Viewer):
                 output.write(image, ('%s%s %s%s' % (
                     os.path.join(prefix, '') if prefix else '',
                     str(index + 1).zfill(4),
-                    filename(title),
+                    filename(title or 'Slide %s' % (index + 1)),
                     os.path.splitext(image)[1])
                     ).encode('ascii', 'replace'))
 
